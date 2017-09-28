@@ -1,0 +1,30 @@
+version: '3'
+
+service:
+  mona:
+    container_name: mongo-box
+    image: mongo:3.4.8
+    command: mongod -p 27017 --dbpath /data/db
+    expose:
+      - "27017"
+    volumes:
+      - mongodir:/data/db
+    networks:
+      - backend
+
+  sech:
+    container_name: search-box
+    image: teilon/koleso:sech
+    networks:
+      - backend
+    depends_on:
+      - mongo-box
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+networks:
+  backend:
+
+volumes:
+  mongodir:
