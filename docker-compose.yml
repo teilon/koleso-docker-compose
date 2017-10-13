@@ -14,7 +14,7 @@ services:
 
   sech:
     container_name: search-box
-    image: teilon/koleso:sech2
+    image: teilon/koleso:sech4
     volumes:
       - searchdir:/tmp/data
     networks:
