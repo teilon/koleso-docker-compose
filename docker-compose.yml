@@ -15,12 +15,12 @@ services:
   sech:
     container_name: search-box
     image: teilon/koleso:sech2
+    volumes:
+      - searchdir:/tmp/data
     networks:
       - backend
     depends_on:
-      - mona
-    volumes:
-      - searchdir: /tmp/data
+      - mona    
     deploy:
       restart_policy:
         condition: on-failure
